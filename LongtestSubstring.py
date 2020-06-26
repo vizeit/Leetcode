@@ -1,4 +1,4 @@
-def main():
+def Longestsubstring():
     """
     This program allows to find longest substring within a input string
     without repeating characters
@@ -9,33 +9,21 @@ def main():
     """
 
     #accept user input for the string
-    input_str = input("Enter the string: ")
-
-    ln = 0
-    substr = ""
-    output = ""
-
-    for ch in input_str:
-        if len(substr) == 0:
-            substr = ch
-        elif len(substr) == 1 and substr == ch:
-            if len(substr) > ln:
-                ln = len(substr)
-                output = str(ln) + ' ' + substr
-            substr = ""
-        elif substr[-1] == ch or substr.find(ch) != -1:
-            if len(substr) > ln:
-                ln = len(substr)
-                output = str(ln) + ' ' + substr
-            substr = ch
-        else:
-            substr += ch
-
-    if len(substr) > ln:
-        ln = len(substr)
-        output = str(ln) + ' ' + substr
-
-    print(output)
+    s = input("Enter the string: ")
+    ml = 0
+    st = set()
+    for i in range(len(s)):
+        if ml >= len(s) - i:
+            break
+        for j in range(i,len(s)):
+            if s[j] in st:
+                ml = len(st) if len(st) > ml else ml
+                st.clear()
+                break
+            else:
+                st.add(s[j])
+    ml = len(st) if st and len(st) > ml else ml 
+    return ml
 
 if __name__ == "__main__":
-    main()
+    print(Longestsubstring())
