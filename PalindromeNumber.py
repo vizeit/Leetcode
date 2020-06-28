@@ -1,11 +1,10 @@
-from math import log10
 def isPalindrome(x: int) -> bool:
     if x < 0:
         return False
-    n = x
-    for i in range(int(log10(x)),-1,-1):
-        n, d = divmod(n, 10)
-        x -= d * 10**i
-    return x == 0
+    n = []
+    while x:
+        x, i = divmod(x, 10)
+        n.append(i)
+    return n == n[::-1]
 if __name__ == "__main__":
-    print(isPalindrome(112))
+    print(isPalindrome(12))
