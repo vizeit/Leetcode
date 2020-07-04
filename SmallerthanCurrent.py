@@ -1,8 +1,9 @@
+from collections import Counter
 def smallerNumbersThanCurrent(nums):
-    rs = []
-    for i in nums:
-        su = sum(1 for j in nums if j < i)
-        rs.append(su)
-    return rs
+    d = Counter(nums)
+    pv = 0
+    for i in sorted(d.keys()):
+        pv, d[i] = d[i]+pv, pv
+    return [d[j] for j in nums]
 if __name__ == "__main__":
-    print(smallerNumbersThanCurrent([8,1,2,2,3]))
+    print(smallerNumbersThanCurrent([7,7,7,7]))
