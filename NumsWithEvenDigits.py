@@ -1,5 +1,6 @@
+from math import log10
 def findNumbers(nums) -> int:
-    return sum(1 for i in nums if not len(ascii(i))%2)
+    return sum(1 for i in nums if not (int(log10(i))+1)%2)
 
 if __name__ == "__main__":
     print(findNumbers([12,345,2,6,7896]))
