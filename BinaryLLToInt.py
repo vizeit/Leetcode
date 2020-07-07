@@ -4,11 +4,14 @@ class ListNode:
         self.next = next
 
 def getDecimalValue(head):
-    s = ''
-    while head:
-        s+=ascii(head.val)
-        head = head.next
-    return int(s,2)
+    i, s = _subgetDecimalValue(head)
+    return s
+
+def _subgetDecimalValue(node):
+    if node.next == None:
+        return (1, 2**0 if node.val else 0)
+    i, s = _subgetDecimalValue(node.next)
+    return (i+1, s+2**i if node.val else s+0)
 
 if __name__ == "__main__":
     head = ListNode(1)
