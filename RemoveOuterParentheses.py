@@ -8,4 +8,6 @@ def removeOuterParentheses(S):
     return rs
 
 if __name__ == "__main__":
+    print(removeOuterParentheses("(()())(())"))
+    print(removeOuterParentheses("(()())(())(()(()))"))
     print(removeOuterParentheses("()()"))
