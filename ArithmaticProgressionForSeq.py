@@ -1,10 +1,14 @@
 def canMakeArithmeticProgression(arr):
-    arr.sort()
-    diff = abs(arr[0] - arr[1])
-    for i in range(2, len(arr)):
-        if abs(arr[i-1]-arr[i]) != diff:
-            return False
-    return True
+    minval = float('inf')
+    maxval = -float('inf')
+    total = 0
+    for item in arr:
+        if item < minval:
+            minval = item
+        if item > maxval:
+            maxval = item
+        total+=item
+    return total == (len(arr)*(minval+maxval))//2 and not (len(arr)*(minval+maxval))%2
 if __name__ == "__main__":
     print(canMakeArithmeticProgression([3,5,1]))
     print(canMakeArithmeticProgression([1,2,4]))
