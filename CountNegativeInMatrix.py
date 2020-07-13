@@ -2,18 +2,20 @@
 def countNegatives(grid):
     c = 0
     for r in grid:
-        if len(r) and r[0] < 0:
-            c+=len(r)
-        elif len(r) and r[-1] < 0: 
-            for i, j in zip(range(len(r)),range(len(r)-1, -1, -1)): 
-                if r[i] < 0:
-                    c += len(r) - i
-                    break
-                elif r[j] >= 0:
-                    c += len(r) - (j + 1)
-                    break
-                if i > j: break
+        c += _subcountnegatives(r)
     return c
+
+def _subcountnegatives(r):
+    c=0
+    if len(r) == 1:
+        return 1 if r[0] < 0 else 0
+    elif len(r) and r[0] < 0:
+        return len(r)
+    else:
+        c += _subcountnegatives(r[:len(r)//2])
+        c += _subcountnegatives(r[len(r)//2:])
+    return c 
+    
 
 if __name__ == "__main__":
     print(countNegatives([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]))
