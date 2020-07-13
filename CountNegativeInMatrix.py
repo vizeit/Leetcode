@@ -11,7 +11,7 @@ def _subcountnegatives(r):
         return 1 if r[0] < 0 else 0
     elif len(r) and r[0] < 0:
         return len(r)
-    else:
+    elif len(r) and r[-1] < 0:
         c += _subcountnegatives(r[:len(r)//2])
         c += _subcountnegatives(r[len(r)//2:])
     return c 
