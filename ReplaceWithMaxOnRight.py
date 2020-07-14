@@ -6,3 +6,4 @@ def replaceElements(arr):
 
 if __name__ == "__main__":
     print(replaceElements([1,2]))
+    print(replaceElements([17,18,5,4,6,1]))
