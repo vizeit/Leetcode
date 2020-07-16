@@ -2,10 +2,11 @@ from collections import defaultdict
 def canBeEqual(target, arr):
     d = defaultdict(int)
     for i, j in zip(target, arr):
-        d[i]+=1
-        if i in d and d[i] == 2: del d[i]
-        d[j]+=1 
-        if j in d and d[j] == 2: del d[j]
+        if i != j:
+            d[i]+=1
+            if i in d and d[i] == 2: del d[i]
+            d[j]+=1 
+            if j in d and d[j] == 2: del d[j]
     return False if len(d) else True
 
 if __name__ == "__main__":
