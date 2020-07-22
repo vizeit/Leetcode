@@ -1,4 +1,5 @@
 # Definition for singly-linked list.
+#Non-recursive approach performs faster than recursive approach for this problem
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
