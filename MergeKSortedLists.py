@@ -5,39 +5,38 @@ class ListNode:
         self.next = next
 
 def mergeKLists(lists) -> ListNode:
-    front, back = None, None
+    if not len(lists): return None
+    elif len(lists) == 1: return lists[0]
+    d = {}
+    front = None
     while len(lists):
-        d = [float('inf'),-1]
-        if len(lists) > 1:
-            for i in range(len(lists)):
-                if lists[i] and lists[i].val < d[0]:
-                    d[0] = lists[i].val
-                    d[1] = i
-                elif lists[i] is None:
-                    del lists[i]
-                    d[0] = float('inf')
-                    break
-            if d[0] != float('inf'):
-                if front == None and back == None:
-                    front = back = ListNode(d[0])
+        i = 0
+        while i < len(lists):
+            if lists[i]:
+                n = ListNode(lists[i].val)
+                if lists[i].val not in d:
+                    d[lists[i].val] = [n, n]
                 else:
-                    back.next = ListNode(d[0])
-                    back = back.next
-                lists[d[1]] = lists[d[1]].next
-                if lists[d[1]] == None: del lists[d[1]]
+                    d[lists[i].val][1].next = n
+                    d[lists[i].val][1] = n
+                lists[i] = lists[i].next
+            if lists[i] is None: 
+                del lists[i]
+                i -= 1
+            i += 1
+    for j in sorted(d.keys(),reverse=True):
+        if front is None:
+            front = d[j][0]
         else:
-            if lists[0]:
-                if front == None and back == None:
-                    front = lists[0]
-                else:
-                    back.next = lists[0]
-            del lists[0]
+            d[j][1].next = front
+            front = d[j][0]
     return front
-
+            
 if __name__ == "__main__":
-    l1 = ListNode(2)
-    l2 = None
-    l3 = ListNode(-1)
+    #mergeKLists([None, None, None])
+    l1 = ListNode(2, ListNode(2, ListNode(4)))
+    l2 = ListNode(1, ListNode(3, ListNode(4)))
+    l3 = ListNode(7, ListNode(8, ListNode(9)))
     out = mergeKLists([l1, l2, l3])
     while out:
         print(out.val)
