@@ -1,11 +1,12 @@
 def searchInsert(nums, target):
     if len(nums) == 0: return 0
-    mid = len(nums) // 2
-    while 1:
-        if mid == len(nums) or nums[mid] == target: return mid
-        elif mid < 0 or (nums[mid] < target and (mid+1 == len(nums) or nums[mid+1] > target)): return mid+1
-        elif nums[mid] > target: mid -= 1
-        else: mid+=1
+    low, high = 0, len(nums)-1
+    while low <= high:
+        mid = (low+high)//2
+        if nums[mid] == target: return mid
+        elif nums[mid] > target: high = mid-1
+        else: low = mid+1
+    return low
 
 if __name__ == "__main__":
     print(searchInsert([1,3,4], 6))
