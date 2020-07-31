@@ -6,12 +6,12 @@ def heightChecker(heights):
 
 class testsolution(unittest.TestCase):
     def __init__(self, *args, **kwargs):
-        super(testsolution, self).__init__(*args, **kwargs)
         self.input_output = [
             ([1,1,4,2,1,3], 3),
             ([5,1,2,3,4], 5),
             ([1,2,3,4,5], 0)
             ]
+        super().__init__(*args, **kwargs)
     def test_heightChecker(self):
         for p1, p2 in self.input_output:
             with self.subTest(input=p1, expected=p2):
