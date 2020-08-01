@@ -23,8 +23,6 @@ class testsolution(unittest.TestCase):
         for p1, p2 in self.input_output:
             with self.subTest(input=p1, expected=p2):
                 self.assertEqual(heightChecker(p1),p2)
-                self.assertEqual(heightChecker(p1),p2)
-                self.assertEqual(heightChecker(p1),p2)
 
 if __name__ == "__main__":
     unittest.main()
