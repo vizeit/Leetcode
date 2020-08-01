@@ -1,7 +1,14 @@
 import unittest
 
 def heightChecker(heights):
-    return sum(1 for i,j in zip(heights,sorted(heights)) if i != j)
+    A = [0]*101
+    c, p = 0, 1
+    for i in heights: A[i]+=1
+    for j in heights:
+        while A[p] == 0: p+=1
+        if p != j: c+=1
+        A[p]-=1
+    return c
 
 
 class testsolution(unittest.TestCase):
