@@ -33,9 +33,8 @@ class testsolution(TestCase):
     def test_nextPermutation(self):
         for p1, p2 in self.inou:
             with self.subTest(input=p1,expected=p2):
-                l = p1
-                self.solution.nextPermutation(l)
-                self.assertEqual(l, p2)
+                self.solution.nextPermutation(p1)
+                self.assertEqual(p1, p2)
 
 if __name__ == "__main__":
     main()
