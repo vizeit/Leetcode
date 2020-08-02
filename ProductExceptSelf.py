@@ -2,11 +2,9 @@ from unittest import TestCase, main
 
 class Solution:
     def productExceptSelf(self, nums):
-        n = len(nums)
-        left, right, rs = [0]*n, [0]*n, [0]*n
-        left[0], right[-1] = 1, 1
-        for i, j in zip(range(1,n), range(n-2, -1, -1)): left[i], right[j] = nums[i-1]*left[i-1], nums[j+1]*right[j+1]
-        for i in range(n): rs[i] = left[i]*right[i]
+        right, rs = 1, [1]*len(nums)
+        for i in range(1,len(nums)): rs[i] = nums[i-1]*rs[i-1]
+        for i in range(len(nums)-1, -1, -1): rs[i], right = rs[i]*right, right*nums[i]
         return rs
 
 class testsolution(TestCase):
