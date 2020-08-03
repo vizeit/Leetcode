@@ -2,17 +2,13 @@ from unittest import TestCase, main
 
 class Solution:
     def merge(self, intervals):
-        if not len(intervals): return intervals
         intervals.sort()
         rs = []
-        interval = intervals[0]
-        for i in range(1, len(intervals)):
-            if intervals[i][0] <= interval[1]:
-                if intervals[i][1] > interval[1]: interval[1] = intervals[i][1]
+        for i in range(len(intervals)):
+            if not rs or intervals[i][0] > rs[-1][1]:
+                rs.append(intervals[i])
             else:
-                rs.append(interval)
-                interval = intervals[i]
-        rs.append(interval)
+                if intervals[i][1] > rs[-1][1]: rs[-1][1] = intervals[i][1]
         return rs
 
 
