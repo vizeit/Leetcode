@@ -13,13 +13,13 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        if head is None: return head
-        nhead = ListNode(head.val)
-        while head.next is not None:
-            head = head.next
-            n = ListNode(head.val, nhead)
-            nhead = n
-        return nhead
+        prev, curr = None, head
+        while curr:
+            t = curr.next
+            curr.next = prev
+            prev = curr
+            curr = t
+        return prev
 
 class testsolution(TestCase):
     def setUp(self):
