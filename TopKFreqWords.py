@@ -1,11 +1,11 @@
 from unittest import TestCase, main
 from collections import Counter
-
+from heapq import heapify, heappop
 class Solution:
     def topKFrequent(self, words, k):
-        d = Counter(words)
-        d = sorted(Counter(words), key=lambda x:(-d[x], x))
-        return d[:k]
+        h = [(-c, key) for key, c in Counter(words).items()]
+        heapify(h)
+        return [heappop(h)[1] for _ in range(k)]
 
 class testsolution(TestCase):
     def setUp(self):
