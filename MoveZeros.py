@@ -1,18 +1,18 @@
 from unittest import TestCase, main
-
+"""
+approach 1: remove zeros, append them at the end. better performance than approach 2
+approach 2: swap items at respective position
+"""
 class Solution:
     def moveZeroes(self, nums):
         """
         Do not return anything, modify nums in-place instead.
         """
-        i = 0
-        zc = 0
-        while i < len(nums):
-            if not nums[i]:
-                zc+=1
-                nums.pop(i)
-            else: i+=1
-        nums.extend([0]*zc)
+        lastnonzero = 0
+        for i in range(len(nums)):
+            if nums[i] !=0:
+                nums[lastnonzero], nums[i] = nums[i], nums[lastnonzero]
+                lastnonzero +=1
 
 class testsolution(TestCase):
     def setUp(self):
