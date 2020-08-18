@@ -18,6 +18,9 @@ class testsolution(TestCase):
     def setUp(self):
         self.solution = Solution()
         self.io = [
+            ([], []),
+            ([1], [1]),
+            ([0], [0]),
             ([0,1,0,3,12], [1,3,12,0,0]),
             ([0,0,0,0,0,1], [1,0,0,0,0,0])
         ]
