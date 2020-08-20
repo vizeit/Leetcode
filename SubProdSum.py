@@ -10,3 +10,4 @@ def subtractProductAndSum(n: int) -> int:
 
 if __name__ == "__main__":
     print(subtractProductAndSum(234))
+    print(subtractProductAndSum(34))
