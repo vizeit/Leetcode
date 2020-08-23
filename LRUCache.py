@@ -1,21 +1,61 @@
 from unittest import TestCase, main
-from collections import OrderedDict
-class LRUCache(OrderedDict):
-    def __init__(self, capacity: int):
-        self.size = capacity
 
-    def get(self, key: int) -> int:
-        item = -1
-        if key in self:
-            item = self[key]
-            self.move_to_end(key)
+class _node:
+    def __init__(self):
+        self.key = 0
+        self.value = 0
+        self.prev = None
+        self.next = None
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.head, self.tail = _node(), _node()
+        self.head.next, self.tail.prev = self.tail, self.head
+        self.cache = {}
+
+    def _addnode(self, node):
+        node.prev = self.head
+        node.next = self.head.next
+        self.head.next.prev = node
+        self.head.next = node
+    
+    def _removenode(self, node):
+        prev = node.prev
+        new = node.next
+        prev.next = new
+        new.prev = prev
+    
+    def _popitem(self):
+        item = self.tail.prev
+        self._removenode(item)
         return item
 
+    def _movetohead(self, node):
+        self._removenode(node)
+        self._addnode(node)
+
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            node = self.cache[key]
+            self._movetohead(node)
+            return node.value
+        return -1
+
     def put(self, key: int, value: int) -> None:
-        self[key] = value
-        self.move_to_end(key)
-        if len(self) > self.size:
-            self.popitem(last=False)
+        if key in self.cache:
+            node = self.cache[key]
+            node.value = value
+            self._movetohead(node)
+        else:
+            node = _node()
+            node.key = key
+            node.value = value
+            self.cache[key] = node
+            self._addnode(node)
+            if len(self.cache) > self.capacity:
+                item = self._popitem()
+                del self.cache[item.key]
 
 class testLRUCache(TestCase):
     def test_get(self):
