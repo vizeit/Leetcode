@@ -1,13 +1,4 @@
 def Longestsubstring():
-    """
-    This program allows to find longest substring within a input string
-    without repeating characters
-    e.g. input: "abcabcbb"
-    output: 3
-    explanation: the answer is "abc", length 3
-    T(n) = O(n)
-    """
-
     #accept user input for the string
     s = input("Enter the string: ")
     ml = 0
