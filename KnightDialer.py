@@ -25,7 +25,8 @@ class testsolution(TestCase):
             (3, 46),
             (4, 104),
             (100, 540641702),
-            (3131, 136006598)
+            (3131, 136006598),
+            (5000, 406880451)
         ]
     
     def test_knightDialer(self):
