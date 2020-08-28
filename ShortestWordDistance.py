@@ -11,3 +11,4 @@ class Solution:
 if __name__ == "__main__":
     print(Solution().shortestDistance(["practice", "makes", "perfect", "coding", "makes"], "coding", "practice"))
     print(Solution().shortestDistance(["practice", "makes", "perfect", "coding", "makes"], "coding", "makes"))
+    print(Solution().shortestDistance(["practice", "makes", "perfect", "coding", "makes"], "coding", "perfect"))
