@@ -19,3 +19,4 @@ if __name__ == "__main__":
     print(isValid("{[]}"))
     print(isValid("{"))
     print(isValid("(("))
+    print(isValid("(()}"))
