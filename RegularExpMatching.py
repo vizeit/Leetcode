@@ -1,3 +1,5 @@
+from unittest import TestCase, main
+
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
@@ -13,9 +15,21 @@ class Solution:
 
         return dp[0][0]
 
+class testsolution(TestCase):
+    def setUp(self):
+        self.Solution = Solution()
+        self.io = [
+            ("aa","a", False),
+            ("aa","a*", True),
+            ("ab",".*", True),
+            ("aab","c*a*b", True),
+            ("mississippi","mis*is*p*.", False)
+        ]
+        
+    def test_isMatch(self):
+        for p1, p2, p3 in self.io:
+            with self.subTest(inputstr=p1, pattern=p2, ismatch=p3):
+                self.assertEqual(self.Solution.isMatch(p1, p2), p3)
+
 if __name__ == "__main__":
-    print(Solution().isMatch("aa","a"))
-    print(Solution().isMatch("aa","a*"))
-    print(Solution().isMatch("ab",".*"))
-    print(Solution().isMatch("aab","c*a*b"))
-    print(Solution().isMatch("mississippi","mis*is*p*."))
+    main()
