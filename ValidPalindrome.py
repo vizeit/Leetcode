@@ -16,7 +16,8 @@ class testsolution(TestCase):
         self.solution = Solution()
         self.inou = [
             ("A man, a plan, a canal: Panama", True),
-            ("race a car", False)
+            ("race a car", False),
+            ("This is a test case", False)
         ]
     def test_isPalindrome(self):
         for p1, p2 in self.inou:
