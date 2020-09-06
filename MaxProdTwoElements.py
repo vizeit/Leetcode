@@ -6,3 +6,4 @@ if __name__ == "__main__":
     print(maxProduct([3,4,5,2]))
     print(maxProduct([1,5,4,5]))
     print(maxProduct([3,7]))
+    print(maxProduct([5,6,8]))
