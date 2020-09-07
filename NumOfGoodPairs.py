@@ -11,7 +11,8 @@ class testsolution(TestCase):
         self.io = [
             ([1,2,3,1,1,3], 4),
             ([1,1,1,1], 6),
-            ([1,2,3], 0)
+            ([1,2,3], 0),
+            ([2,2,2], 3)
         ]
 
     def test_numIdenticalPairs(self):
